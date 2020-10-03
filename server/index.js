@@ -25,7 +25,7 @@ app.get('/api/products', (req, res, next) => {
            "name",
            "price",
            "image",
-           "description"
+           "description" 
     from "products"
   `;
   db.query(teas)
