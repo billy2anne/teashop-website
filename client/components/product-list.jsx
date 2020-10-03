@@ -25,10 +25,10 @@ export default class ProductList extends React.Component {
     const products = this.state.products.map(product =>
       <ProductListItem
         product={product}
-        key={product.productId}
+        key={product.teaId}
         name={product.name}
         price={product.price}
-        shortDescription={product.shortDescription}
+        description={product.description}
         productId={product.productId}
       />);
 

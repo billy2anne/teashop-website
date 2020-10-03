@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default class ProductListItem extends React.component {
+export default class ProductListItem extends React.Component {
 
   render() {
     return (
       <div className="card-container col-3">
         <div className="image">
-          <img src="{this.props.product.image}" alt="tea image"/>
+          <img src={this.props.product.image} alt="tea image"/>
         </div>
         <div className="name">
           {this.props.name}
@@ -15,7 +15,7 @@ export default class ProductListItem extends React.component {
           ${this.props.price}
         </div>
         <div className="description">
-          ${this.props.description}
+          {this.props.description}
         </div>
       </div>
     );

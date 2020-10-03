@@ -1,16 +1,16 @@
 header{
-  background-color:#343a40;
-  color: white;
+  background-color:#F1F99E;
 }
 
 body{
-  background-color:#f8f9fa;
+  background-color: #F1F99E;
 }
 
 .header-contents{
   padding: 1rem;
   font-size: 15px;
 }
+
 
 .card-container{
   flex-wrap: wrap ;
