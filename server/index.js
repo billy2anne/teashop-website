@@ -25,12 +25,38 @@ app.get('/api/products', (req, res, next) => {
            "name",
            "price",
            "image",
-           "description" 
+           "description"
     from "products"
   `;
   db.query(teas)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
+});
+
+app.get('/api/products/:teaId', (req, res, next) => {
+  if (req.params.teaId <= 0) {
+    return res.status(400).json({
+      error: 'ProductId entered is invalid.'
+    });
+  } else {
+    db.query(`
+      select *
+      from   "products"
+      where  "teaId" = $1;
+    `, [req.params.teaId])
+      .then(result => {
+        if (!result.rows[0]) {
+          return res.status(404).json({
+            error: `teaId: ${req.params.teaId} is not found.`
+          });
+        } else {
+          res.json(result.rows[0]);
+        }
+      }).catch(err => {
+        console.error(err);
+        next(new ClientError('unexpected error', 500));
+      });
+  }
 });
 
 app.use('/api', (req, res, next) => {
