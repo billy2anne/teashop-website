@@ -36,7 +36,7 @@ app.get('/api/products', (req, res, next) => {
 app.get('/api/products/:teaId', (req, res, next) => {
   if (req.params.teaId <= 0) {
     return res.status(400).json({
-      error: 'ProductId entered is invalid.'
+      error: 'teaId entered is invalid.'
     });
   } else {
     db.query(`
