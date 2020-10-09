@@ -27,9 +27,19 @@ export default class ProductDetails extends React.Component {
       return null;
     } else {
       return (
-        <div onClick = {this.setView}>
-          &lt;Back to Catalog
-        </div>
+        <>
+          <div onClick = {this.setView}>
+            &lt;Back to Catalogs
+          </div>
+          <div className="productDetailsContainer col-12">
+            <img src={this.state.product.image} alt="productImage" className="detailsImage col-6"></img>
+            <div className="detailsContentContainer col-6">
+              <div className="nameProductDetails col-6">{this.state.product.name}</div>
+              <div className="price">{this.state.product.price}</div>
+              <div className="description">{this.state.product.description}</div>
+            </div>
+          </div>
+        </>
       );
     }
   }
