@@ -6,7 +6,7 @@ export default class Header extends React.Component {
       <header className ="header">
         <div className="header-contents">
           <div className="row  justify-content-center">
-            <h6 className="col-1">BestTeas</h6>
+            <h6 className="col-1 logoText">BestTeas</h6>
             <h6 className="col-1">About us</h6>
             <h6 className="col-1">Menu</h6>
             <h6 className="col-1">Order</h6>
