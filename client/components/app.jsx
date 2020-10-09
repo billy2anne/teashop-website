@@ -36,8 +36,21 @@ export default class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : <><Header /><ProductList /></>;
+    const viewType = this.state.view.name;
+    if (viewType === 'catalog') {
+      return (
+        <div>
+          <Header/>
+          <ProductList setview = {this.setview}/>
+        </div>
+      );
+    } else if (viewType === 'details') {
+      return (
+        <div>
+          <Header/>
+        </div>
+      );
+    }
+
   }
 }
