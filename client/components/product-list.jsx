@@ -37,6 +37,7 @@ export default class ProductList extends React.Component {
         price={product.price}
         description={product.description}
         productId={product.teaId}
+        setViewDetails ={this.setViewDetails}
       />);
 
     return (
