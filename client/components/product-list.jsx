@@ -23,7 +23,7 @@ export default class ProductList extends React.Component {
   }
 
   setViewDetails(e) {
-    const productId = e.currentTarget.getAttribute('teaId');
+    const productId = e.currentTarget.getAttribute('id');
     this.props.setView('details', { productId });
 
   }

@@ -49,7 +49,10 @@ export default class App extends React.Component {
       return (
         <div>
           <Header/>
-          <ProductDetails/>
+          <ProductDetails
+            view = {this.setView}
+            viewParams = {this.state.view.params}
+          />
         </div>
       );
     }
