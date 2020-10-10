@@ -30,9 +30,9 @@ export default class ProductDetails extends React.Component {
       return (
         <>
           <div onClick = {this.setView} className="catalogText">
-            &lt;Back to Catalogs
+            &lt;Back to Menu
           </div>
-          <div className="productDetailsContainer col-12">
+          <div className="productDetailsContainer col-10 justify-content-center">
             <img src={this.state.product.image} alt="productImage" className="detailsImage col-3"></img>
             <div className="detailsContentContainer col-6">
               <div className="nameProductDetails col-6">{this.state.product.name}</div>
