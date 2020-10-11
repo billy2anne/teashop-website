@@ -8,6 +8,7 @@ export default class ProductDetails extends React.Component {
       product: null
     };
     this.setView = this.setView.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +21,10 @@ export default class ProductDetails extends React.Component {
 
   setView(e) {
     this.props.view('catalog', {});
+  }
+
+  addToCart() {
+    this.props.addToCart(this.state.product);
   }
 
   render() {
@@ -38,7 +43,7 @@ export default class ProductDetails extends React.Component {
               <div className="nameProductDetails col-6">{this.state.product.name}</div>
               <div className="price">${price.toFixed(2)}</div>
               <div className="description">{this.state.product.description}</div>
-              <button>Add to Cart</button>
+              <button onClick ={this.addToCart}>Add to Cart</button>
             </div>
           </div>
         </>
