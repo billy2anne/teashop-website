@@ -59,6 +59,50 @@ app.get('/api/products/:teaId', (req, res, next) => {
   }
 });
 
+app.get('/api/cart/', (req, res, next) => {
+  const sql = `
+  select "c"."cartItemId",
+         "c"."price",
+         "p"."teaId",
+         "p"."image",
+         "p"."name",
+         "p"."description"
+    from "cartItems" as "c"
+    join "products"  as "p" using ("teaId")
+   where "c"."cartId" = $1
+  `;
+  if (!req.session.cartId) {
+    return res.json([]);
+  }
+  const value = [req.session.cartId];
+  db.query(sql, value)
+    .then(result => {
+      const data = result.rows;
+      res.status(200).json(data);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/cart', (req, res, next) => {
+  const { productId } = req.body;
+  if (!Number(productId)) {
+    return res.status.json({ error: 'Grade must be a positive number' });
+  }
+
+  const sql = `
+    select "price" from "products"
+    where "productId" = ${req.body.productId}
+  `;
+
+  db.query(sql)
+    .then(response => {
+      if (response.rows.length === 0) {
+        next(new ClientError('Cannot find product', 400));
+      }
+    });
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
