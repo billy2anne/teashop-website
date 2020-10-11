@@ -17,6 +17,7 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +48,25 @@ export default class App extends React.Component {
           cart: data
         });
       });
+  }
+
+  addToCart(tea) {
+    fetch('api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(tea)
+    })
+      .then(
+        teaItem => {
+          const cartList = this.state.cart;
+          cartList.push(teaItem);
+          this.setState({
+            cart: cartList
+          });
+        }
+      );
   }
 
   render() {
