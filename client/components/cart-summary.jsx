@@ -25,7 +25,7 @@ export default function CartSummary(props) {
           <CartSummaryItem item={item} key={item.teaId}/>
         )}
       </div>
-      <div className="totalPrice">Price: ${(totalPrice) * 0.01.toFixed(2)} </div>
+      <div className="totalPrice">Price: ${(totalPrice).toFixed(2)} </div>
     </>
   );
 
