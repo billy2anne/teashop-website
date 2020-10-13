@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function CartSummaryItem(props) {
-  const totalPrice = this.props.CartItem.price;
+  const totalPrice = this.props.item.price;
 
   return (
     <>

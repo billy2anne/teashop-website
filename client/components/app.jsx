@@ -93,7 +93,6 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} />
-
         </div>
       );
     }
