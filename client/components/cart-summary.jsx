@@ -1,11 +1,10 @@
 import React from 'react';
 import CartSummaryItem from './cart-summary-item';
-// cartsummary takes cartItem array
 export default function CartSummary(props) {
 
   let totalPrice = 0;
-  for (var i = 0; i < props.cartState.length; i++) {
-    totalPrice = (props.cartState[i].price / 100) + totalPrice;
+  for (var i = 0; i < props.cart.length; i++) {
+    totalPrice = (props.cart[i].price / 100) + totalPrice;
   }
 
   if (props.cart.length === 0) {
@@ -17,7 +16,7 @@ export default function CartSummary(props) {
   return (
     <>
       <div className="cartSummaryContainer">
-        <div onClick={props.setView('catalog', {})} className="catalogText">
+        <div onClick={props.view('catalog', {})} className="catalogText">
           &lt;Back to Menu
         </div>
         <h1>Cart Summary</h1>

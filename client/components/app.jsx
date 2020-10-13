@@ -75,14 +75,14 @@ export default class App extends React.Component {
     if (viewType === 'catalog') {
       return (
         <div>
-          <Header cartItemCount = {this.state.cart.length} />
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
           <ProductList setView = {this.setView}/>
         </div>
       );
     } else if (viewType === 'details') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart.length} />
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
           <ProductDetails
             view = {this.setView}
             viewParams = {this.state.view.params}
@@ -93,8 +93,8 @@ export default class App extends React.Component {
     } else if (viewType === 'cart') {
       return (
         <div>
-          <Header cartItemCount={this.state.cart.length} />
-          <CartSummary/>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <CartSummary cart={this.state.cart} view={this.setView}/>
         </div>
       );
     }
