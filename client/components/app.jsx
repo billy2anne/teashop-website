@@ -70,6 +70,27 @@ export default class App extends React.Component {
       );
   }
 
+  placeOrder(paymentData) {
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: paymentData.name,
+        creditCard: paymentData.order,
+        shippingAddress: paymentData.shippingAddress
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cart: []
+        });
+      });
+
+  }
+
   render() {
     const viewType = this.state.view.name;
     if (viewType === 'catalog') {
