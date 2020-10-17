@@ -151,6 +151,40 @@ app.post('/api/cart', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// Verify that there is a cartId on req.session or respond with a 400 error with a helpful message.
+// Verify that the req.body contains a name, creditCard, and shippingAddress.
+// Insert the cartId, name, creditCard, and shippingAddress into the orders table.
+// delete the cartId from req.session if the insert succeeded.
+// Respond with a 201 status and a JSON body including the orderId, createdAt, name, creditCard, and shippingAddress of the placed order.
+
+app.post('api/orders', (req, res, next) => {
+
+  const { name, creditCard, shippingAddress } = req.body;
+  const { cartId } = req.session;
+  if (!cartId) {
+    return res.status(400).json(({ error: 'cartId not found' }));
+  }
+  if (!name || !creditCard || !shippingAddress) {
+    return res.status(400).json({ error: 'Please type in address, credit card, and shipping address in the proper fields' });
+  }
+
+  const inputOrder = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+    values ($1, $2, $3, $4)
+    returning "orderId",
+              "createdAt",
+              "name",
+              "creditCard"
+              "shippingAddress"`;
+
+  const values = [cartId, name, creditCard, shippingAddress];
+  db.query(inputOrder, values)
+    .then(data => {
+      delete req.session.cartId;
+      res.status(201).json(data.rows[0]);
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

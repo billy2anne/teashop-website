@@ -14,17 +14,18 @@ export default function CartSummary(props) {
   }
   //  get the total price of each item and track the quantity of each with the same teaId
   let totalPrice = 0;
-  var teaObj = {};
-  let qty = 1;
+  // var teaObj = {};
+  const qty = 1;
 
   for (var i = 0; i < props.cart.length; i++) {
     totalPrice += (props.cart[i].price / 100);
-    teaObj[props.cart[i].teaId] = qty;
-    if (props.cart[i].teaId in teaObj) {
-      qty = qty + 1;
-    }
+    // teaObj[props.cart[i].teaId] = qty;
+    // if (props.cart[i].teaId in teaObj) {
+    //   qty = qty + 1;
+    // } else {
+    //   qty = 1;
+    // }
   }
-  console.log(teaObj);
 
   const teaCartItem = (
     <div className="cartSummaryContainer col-10 align-content-center">
@@ -38,6 +39,8 @@ export default function CartSummary(props) {
       <div className="totalPrice col-10 justify-content-center">Total Price: ${(totalPrice).toFixed(2)} </div>
     </div>
   );
+
+  console.log(props.cart);
 
   return teaCartItem;
 
