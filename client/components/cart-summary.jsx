@@ -16,6 +16,7 @@ export default function CartSummary(props) {
   let totalPrice = 0;
   var teaObj = {};
   let qty = 1;
+  let output = [];
   for (var i = 0; i < props.cart.length; i++) {
     totalPrice += (props.cart[i].price / 100);
     teaObj[props.cart[i].teaId] = qty;
@@ -28,7 +29,9 @@ export default function CartSummary(props) {
   for (const item in teaObj) {
     qty = teaObj[item];
     if (qty > 1) {
-      props.cart.findIndex()
+      const index = props.cart.indexOf({teaId: item})
+
+      ()
 
     }
     console.log(props.cart);
