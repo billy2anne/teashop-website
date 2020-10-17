@@ -79,7 +79,7 @@ img{
   padding: 5%
 }
 
-.cartSummaryItemContainer{
+.cartSummaryItemContainer, .emptyCart{
   margin-left: 10%;
   margin-bottom: 2%;
   background-color: #ff980087;
@@ -89,7 +89,12 @@ img{
 .cartItemsprice, .cartItemsdescription, .cartItemsname{
   font-size: 22px;
   padding: 8px;
-  text-align: center;
+}
+
+.cartItemsprice, .cartItemsname{
+  display: flex;
+  align-items: center;
+  margin-left:15%;
 }
 
 .cartItemsimage{
