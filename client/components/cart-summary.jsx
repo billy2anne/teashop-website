@@ -12,43 +12,33 @@ export default function CartSummary(props) {
       </div>
     );
   }
-  //  get the total price of each item and track the quantity of each teaId
+  //  get the total price of each item and track the quantity of each with the same teaId
   let totalPrice = 0;
   var teaObj = {};
   let qty = 1;
-  let output = [];
+
   for (var i = 0; i < props.cart.length; i++) {
     totalPrice += (props.cart[i].price / 100);
     teaObj[props.cart[i].teaId] = qty;
     if (props.cart[i].teaId in teaObj) {
-      qty = qty + 1;//
+      qty = qty + 1;
     }
   }
   console.log(teaObj);
-  // checks if there is a duplicate of teaItem
-  for (const item in teaObj) {
-    qty = teaObj[item];
-    if (qty > 1) {
-      const index = props.cart.indexOf({teaId: item})
 
-      ()
-
-    }
-    console.log(props.cart);
-    const teaCartItem = (
-      <div className="cartSummaryContainer col-10 align-content-center">
-        <div onClick={() => props.view('catalog', {})} className="catalogText">
-          &lt;Back to Menu
-        </div>
-        <h4>Cart Summary</h4>
-        {props.cart.map(item =>
-          <CartSummaryItem item={item} key={item.cartItemId} qty={qty} />
-        )}
-        <div className="totalPrice col-10 justify-content-center">Total Price: ${(totalPrice).toFixed(2)} </div>
+  const teaCartItem = (
+    <div className="cartSummaryContainer col-10 align-content-center">
+      <div onClick={() => props.view('catalog', {})} className="catalogText">
+        &lt;Back to Menu
       </div>
-    );
+      <h4>Cart Summary</h4>
+      {props.cart.map(item =>
+        <CartSummaryItem item={item} key={item.cartItemId} qty={qty} />
+      )}
+      <div className="totalPrice col-10 justify-content-center">Total Price: ${(totalPrice).toFixed(2)} </div>
+    </div>
+  );
 
-    return teaCartItem;
+  return teaCartItem;
 
-  }
 }
