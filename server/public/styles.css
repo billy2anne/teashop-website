@@ -5,6 +5,10 @@ header{
 body{
   background-color: #F1F99E;
 }
+h4, .totalPrice{
+  margin-left: 10%;
+  padding: 20px
+}
 
 .header-contents{
   padding: 1rem;
@@ -47,7 +51,7 @@ img{
 
 .detailsContentContainer{
   flex-wrap: wrap;
-  margin: 20px
+  margin: 20px;
 }
 
 .detailsImage{
@@ -55,10 +59,6 @@ img{
   height: 450px;
   object-fit: cover;
   margin: 20px
-}
-
-.description{
-  /* margin: 30px 50px */
 }
 
 .nameProductDetails{
@@ -70,4 +70,36 @@ img{
   font-family: Rochester;
   font-size: 22px;
   color: darkred
+}
+
+.cartSummaryContainer{
+  font-size: 20px;
+}
+.cartdetailsContainer, .cartItemsname{
+  padding: 5%
+}
+
+.cartSummaryItemContainer, .emptyCart{
+  margin-left: 10%;
+  margin-bottom: 2%;
+  background-color: #ff980087;
+
+}
+
+.cartItemsprice, .cartItemsdescription, .cartItemsname{
+  font-size: 22px;
+  padding: 8px;
+}
+
+.cartItemsprice, .cartItemsname{
+  display: flex;
+  align-items: center;
+  margin-left:15%;
+}
+
+.cartItemsimage{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 20px
 }
