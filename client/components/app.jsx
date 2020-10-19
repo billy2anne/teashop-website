@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import AboutUs from './about-us';
+import Locations from './locations';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'aboutUs',
+        name: 'locations',
         params: {}
       },
       cart: []
@@ -134,6 +135,13 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
           <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length}/>
+        </div>
+      );
+    } else if (viewType === 'locations') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <Locations/>
         </div>
       );
     }

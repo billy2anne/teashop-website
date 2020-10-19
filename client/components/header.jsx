@@ -11,7 +11,7 @@ export default class Header extends React.Component {
             <h6 className="col-1" onClick={() => this.props.view('aboutUs', {})}>About us</h6>
             <h6 className="col-1" onClick={() => this.props.view('catalog', {})}>Menu</h6>
             <h6 className="col-1" onClick={() => this.props.view('checkout', {})}>Order</h6>
-            <h6 className="col-1">Locations</h6>
+            <h6 className="col-1" onClick={() => this.props.view('locations', {})}>Locations</h6>
             <h6 className="col-1">Career</h6>
             <h6 className="col-2" onClick={() => this.props.view('cart', {})}><i className="fas fa-shopping-cart"></i> <span>{this.props.cartItemCount}</span>
             </h6>
