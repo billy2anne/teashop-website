@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ export default class App extends React.Component {
       },
       body: JSON.stringify({
         name: paymentData.name,
-        creditCard: paymentData.order,
+        creditCard: paymentData.creditCard,
         shippingAddress: paymentData.shippingAddress
       })
     })
@@ -88,7 +89,7 @@ export default class App extends React.Component {
         this.setState({
           cart: []
         });
-        this.setView('catalog', {});
+        this.setView('checkout', {});
       });
   }
 
@@ -117,6 +118,13 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
           <CartSummary cart={this.state.cart} view={this.setView}/>
+        </div>
+      );
+    } else if (viewType === 'checkout') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <CheckoutForm placeOrder={this.placeOrder} />
         </div>
       );
     }

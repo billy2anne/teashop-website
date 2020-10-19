@@ -86,12 +86,12 @@ img{
 
 }
 
-.cartItemsprice, .cartItemsdescription, .cartItemsname{
+.cartItemsprice, .cartItemsdescription, .cartItemsname, .cartQty{
   font-size: 22px;
   padding: 8px;
 }
 
-.cartItemsprice, .cartItemsname{
+ .cartItemsname{
   display: flex;
   align-items: center;
   margin-left:15%;
