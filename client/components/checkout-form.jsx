@@ -24,6 +24,16 @@ export default class CheckoutForm extends React.Component {
   }
 
   render() {
+    if (this.props.cart === 0) {
+      return (
+        <div className="cartSummaryContainer col-10 align-content-center">
+          <div className="emptyCart">You have 0 items in your cart.</div>
+          <div onClick={this.setViewMenu} className="catalogText">
+            &lt; Continue Shopping
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="row mx-0">
         <div className="col-7 mx-auto d-flex flex-column">

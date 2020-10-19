@@ -5,9 +5,14 @@ header{
 body{
   background-color: #F1F99E;
 }
-h4, .totalPrice{
+h4, .totalPrice, .homePageText{
   margin-left: 10%;
   padding: 20px
+}
+
+h2{
+  margin: 2%;
+  text-align: center
 }
 
 .header-contents{
@@ -102,4 +107,23 @@ img{
   height: 100%;
   object-fit: cover;
   margin: 20px
+}
+
+.homePageContainer{
+  background-image: url("./images/homepage.jpeg");
+  background-size:cover;
+  height: 600px;
+}
+
+.viewMenuButton{
+  position: relative;
+  left: 65%;
+  top: 40%;
+  background-color: #800a13d6;
+  height: 10%;
+  width: 10%
+}
+
+.section{
+  height: 20%
 }

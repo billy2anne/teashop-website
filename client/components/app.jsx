@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import AboutUs from './about-us';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'aboutUs',
         params: {}
       },
       cart: []
@@ -95,6 +96,14 @@ export default class App extends React.Component {
 
   render() {
     const viewType = this.state.view.name;
+    if (viewType === 'aboutUs') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <AboutUs view={this.setView} />
+        </div>
+      );
+    }
     if (viewType === 'catalog') {
       return (
         <div>
@@ -124,7 +133,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} />
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length}/>
         </div>
       );
     }
