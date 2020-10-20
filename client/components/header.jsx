@@ -1,23 +1,22 @@
 import React from 'react';
 
-export default class Header extends React.Component {
+export default function Header(props) {
 
-  render() {
-    return (
-      <header className ="header">
-        <div className="header-contents">
-          <div className="row justify-content-center">
-            <h6 className="col-1 logoText">BestTeas</h6>
-            <h6 className="col-1" onClick={() => this.props.view('aboutUs', {})}>About us</h6>
-            <h6 className="col-1" onClick={() => this.props.view('catalog', {})}>Menu</h6>
-            <h6 className="col-1" onClick={() => this.props.view('checkout', {})}>Order</h6>
-            <h6 className="col-1" onClick={() => this.props.view('locations', {})}>Locations</h6>
-            <h6 className="col-1">Career</h6>
-            <h6 className="col-2" onClick={() => this.props.view('cart', {})}><i className="fas fa-shopping-cart"></i> <span>{this.props.cartItemCount}</span>
-            </h6>
-          </div>
+  return (
+    <header className ="header">
+      <div className="header-contents">
+        <div className="row justify-content-center">
+          <h6 className="col-1 logoText">BestTeas</h6>
+          <h6 className="col-1" onClick={() => props.view('aboutUs', {})}>About us</h6>
+          <h6 className="col-1" onClick={() => props.view('catalog', {})}>Menu</h6>
+          <h6 className="col-1" onClick={() => props.view('checkout', {})}>Order</h6>
+          <h6 className="col-1" onClick={() => props.view('locations', {})}>Locations</h6>
+          <h6 className="col-1">Career</h6>
+          <h6 className="col-2" onClick={() => props.view('cart', {})}><i className="fas fa-shopping-cart"></i> <span>{props.cartItemCount}</span>
+          </h6>
         </div>
-      </header>
-    );
-  }
+      </div>
+    </header>
+  );
+
 }
