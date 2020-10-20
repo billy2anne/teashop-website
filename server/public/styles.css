@@ -161,6 +161,6 @@ section{
 
 .fa-times:before{
   position: relative;
-  top:2rem;
-  left:71rem;
+  top: 1vmax;
+  left:70vmax
 }
