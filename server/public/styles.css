@@ -131,3 +131,30 @@ img{
 .locationContainer{
   margin-left: 15%;
 }
+
+.locationImage1{
+  background-image: url("./images/storephoto1.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage2{
+  background-image: url("./images/storephoto2.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage3{
+  background-image: url("./images/storephoto3.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage4{
+  background-image: url("./images/storephoto4.jpg");
+  background-size:cover;
+  height: 500px;
+}
+section{
+  margin: 3%;
+}
