@@ -10,7 +10,7 @@ export default class CheckoutForm extends React.Component {
   }
 
   setViewMenu(e) {
-    this.props.setView('catalog', {});
+    this.props.view('catalog', {});
   }
 
   handleChange(e) {

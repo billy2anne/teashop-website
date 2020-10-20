@@ -14,7 +14,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'locations',
+        name: 'aboutUs',
         params: {}
       },
       cart: []
@@ -134,7 +134,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length}/>
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} view={this.setView}/>
         </div>
       );
     } else if (viewType === 'locations') {
