@@ -42,9 +42,6 @@ export default class ProductList extends React.Component {
 
     return (
       <>
-        <div onClick={this.setViewDetails} className="catalogText">
-        &lt;Back to Menu
-        </div>
         <div className="row justify-content-center">
           {products}
         </div>
