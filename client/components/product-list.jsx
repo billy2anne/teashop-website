@@ -25,7 +25,6 @@ export default class ProductList extends React.Component {
   setViewDetails(e) {
     const productId = e.currentTarget.getAttribute('id');
     this.props.setView('details', { productId });
-
   }
 
   render() {
@@ -38,10 +37,12 @@ export default class ProductList extends React.Component {
         description={product.description}
         productId={product.teaId}
         setViewDetails ={this.setViewDetails}
-      />);
+      />
+    );
 
     return (
       <>
+        <h4>Tea Menu</h4>
         <div className="row justify-content-center">
           {products}
         </div>

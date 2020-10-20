@@ -7,6 +7,7 @@ export default function CartSummaryItem(props) {
   return (
     <>
       <div className="cartSummaryItemContainer d-flex justify-content-between" id={props.item.cartItemId}>
+        <i className="fas fa-times"></i>
         <div className="cartItemsimage col-2">
           <img className="cartItemsimage" src={props.item.image} alt="cart image" />
         </div>

@@ -15,6 +15,7 @@ export default function ProductListItem(props) {
       <div className="description">
         {props.description}
       </div>
+      <button>Add to Cart</button>
     </div>
   );
 }

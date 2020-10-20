@@ -158,3 +158,9 @@ img{
 section{
   margin: 3%;
 }
+
+.fa-times:before{
+  position: relative;
+  top:2rem;
+  left:71rem;
+}
