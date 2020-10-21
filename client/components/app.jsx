@@ -23,6 +23,7 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.deleteCartItem = this.deleteCartItem.bind(this);
   }
 
   componentDidMount() {
@@ -95,6 +96,15 @@ export default class App extends React.Component {
       });
   }
 
+  deleteCartItem(cartItemId) {
+    fetch(`/api/cart/${cartItemId}`, {
+      method: 'DELETE'
+    })
+      .then(res => {
+        res.json();
+      });
+  }
+
   render() {
     const viewType = this.state.view.name;
     if (viewType === 'aboutUs') {
@@ -127,14 +137,14 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CartSummary cart={this.state.cart} view={this.setView}/>
+          <CartSummary cart={this.state.cart} view={this.setView} delete={this.deleteCartItem}/>
         </div>
       );
     } else if (viewType === 'checkout') {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} />
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} view={this.setView} />
         </div>
       );
     } else if (viewType === 'locations') {
