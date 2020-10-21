@@ -180,16 +180,8 @@ app.post('/api/orders', (req, res, next) => {
     });
 });
 
-// app.delete('/api/cart/:teaId', (req, res, next) => {
-//   const id = parseInt(req.params.teaId);
-//   const { cartId } = req.session;
+// app.delete('/api/cart', (req, res, next) => {
 
-//   if (cartItems.find(cartItem => cartItem.teaId === id)) {
-//     let cartItems = cartItems.filter(item => item.teaid != id);
-//     res.sendStatus(204);
-//   } else {
-//     res.sendStatus(404);
-//   }
 // });
 
 app.use('/api', (req, res, next) => {
