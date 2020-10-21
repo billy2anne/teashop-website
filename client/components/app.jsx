@@ -134,7 +134,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} view={this.setView}/>
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} />
         </div>
       );
     } else if (viewType === 'locations') {
@@ -146,4 +146,5 @@ export default class App extends React.Component {
       );
     }
   }
+
 }
