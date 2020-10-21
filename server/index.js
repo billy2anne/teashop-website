@@ -180,9 +180,22 @@ app.post('/api/orders', (req, res, next) => {
     });
 });
 
-// app.delete('/api/cart', (req, res, next) => {
-
-// });
+app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  const cartItemId = req.params.cartItemId;
+  const sql = `
+    delete from "cartItems"
+    where "cartItemId" = $1
+  `;
+  db.query(sql, [cartItemId])
+    .then(data => {
+      if (data.rowCount === 0) {
+        return res.status(400);
+      } else {
+        return res.status(204).json({ alert: 'Item was successfully deleted' });
+      }
+    }
+    );
+});
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
