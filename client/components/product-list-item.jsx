@@ -1,23 +1,21 @@
 import React from 'react';
 
-export default class ProductListItem extends React.Component {
-
-  render() {
-    return (
-      <div className="card-container col-3" onClick ={this.props.setViewDetails} id={this.props.productId}>
-        <div className="image">
-          <img src={this.props.product.image} alt="tea image"/>
-        </div>
-        <div className="name">
-          {this.props.name}
-        </div>
-        <div className="price">
-          ${(this.props.price / 100).toFixed(2)}
-        </div>
-        <div className="description">
-          {this.props.description}
-        </div>
+export default function ProductListItem(props) {
+  return (
+    <div className="card-container col-3" onClick ={props.setViewDetails} id={props.productId}>
+      <div className="image">
+        <img src={props.product.image} alt="tea image"/>
       </div>
-    );
-  }
+      <div className="name">
+        {props.name}
+      </div>
+      <div className="price">
+        ${(props.price / 100).toFixed(2)}
+      </div>
+      <div className="description">
+        {props.description}
+      </div>
+      <button>Add to Cart</button>
+    </div>
+  );
 }

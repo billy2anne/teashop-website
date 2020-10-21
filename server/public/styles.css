@@ -5,9 +5,14 @@ header{
 body{
   background-color: #F1F99E;
 }
-h4, .totalPrice{
+h4, .totalPrice, .homePageText{
   margin-left: 10%;
   padding: 20px
+}
+
+h2{
+  margin: 2%;
+  text-align: center
 }
 
 .header-contents{
@@ -86,12 +91,12 @@ img{
 
 }
 
-.cartItemsprice, .cartItemsdescription, .cartItemsname{
+.cartItemsprice, .cartItemsdescription, .cartItemsname, .cartQty{
   font-size: 22px;
   padding: 8px;
 }
 
-.cartItemsprice, .cartItemsname{
+ .cartItemsname{
   display: flex;
   align-items: center;
   margin-left:15%;
@@ -102,4 +107,60 @@ img{
   height: 100%;
   object-fit: cover;
   margin: 20px
+}
+
+.homePageContainer{
+  background-image: url("./images/homepage.jpeg");
+  background-size:cover;
+  height: 600px;
+}
+
+.viewMenuButton{
+  position: relative;
+  left: 65%;
+  top: 40%;
+  background-color: #800a13d6;
+  height: 10%;
+  width: 10%
+}
+
+.section{
+  height: 20%
+}
+
+.locationContainer{
+  margin-left: 15%;
+}
+
+.locationImage1{
+  background-image: url("./images/storephoto1.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage2{
+  background-image: url("./images/storephoto2.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage3{
+  background-image: url("./images/storephoto3.jpg");
+  background-size:cover;
+  height: 500px;
+}
+
+.locationImage4{
+  background-image: url("./images/storephoto4.jpg");
+  background-size:cover;
+  height: 500px;
+}
+section{
+  margin: 3%;
+}
+
+.fa-times:before{
+  position: relative;
+  top: 1vmax;
+  left:70vmax
 }

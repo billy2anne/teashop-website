@@ -180,6 +180,10 @@ app.post('/api/orders', (req, res, next) => {
     });
 });
 
+// app.delete('/api/cart', (req, res, next) => {
+
+// });
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

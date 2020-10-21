@@ -3,6 +3,9 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
+import AboutUs from './about-us';
+import Locations from './locations';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,7 +14,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'aboutUs',
         params: {}
       },
       cart: []
@@ -19,6 +22,7 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
 
   componentDidMount() {
@@ -70,8 +74,37 @@ export default class App extends React.Component {
       );
   }
 
+  placeOrder(paymentData) {
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: paymentData.name,
+        creditCard: paymentData.creditCard,
+        shippingAddress: paymentData.shippingAddress
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cart: []
+        });
+        this.setView('checkout', {});
+      });
+  }
+
   render() {
     const viewType = this.state.view.name;
+    if (viewType === 'aboutUs') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <AboutUs view={this.setView} />
+        </div>
+      );
+    }
     if (viewType === 'catalog') {
       return (
         <div>
@@ -97,7 +130,20 @@ export default class App extends React.Component {
           <CartSummary cart={this.state.cart} view={this.setView}/>
         </div>
       );
+    } else if (viewType === 'checkout') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} view={this.setView}/>
+        </div>
+      );
+    } else if (viewType === 'locations') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <Locations/>
+        </div>
+      );
     }
   }
-
 }
