@@ -25,9 +25,9 @@ export default function CartSummary(props) {
         &lt;Back to Menu
       </div>
       <h4>Cart Summary</h4>
-      {props.cart.map(item =>
-        <CartSummaryItem key={item.cartItemId} item={item} id={item.cartItemId} qty={qty}/>
-      )}
+      {props.cart.map(item => {
+        return <CartSummaryItem key={item.cartItemId} item={item} id={item.cartItemId} qty={qty} delete = {props.delete}/>;
+      })}
       <div className="totalPrice col-10 justify-content-center">Total Price: ${(totalPrice).toFixed(2)}
         <br/>
         <button onClick={() => props.view('checkout', {})}>Place Order</button>

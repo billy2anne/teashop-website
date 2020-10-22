@@ -23,6 +23,7 @@ export default class App extends React.Component {
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.deleteCartItem = this.deleteCartItem.bind(this);
   }
 
   componentDidMount() {
@@ -63,12 +64,14 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(tea)
     })
+      .then(res => res.json())
       .then(
-        teaItem => {
+        data => {
           const cartList = this.state.cart;
-          cartList.push(teaItem);
+          const addItems = [];
+          addItems.push(data.[0]);
           this.setState({
-            cart: cartList
+            cart: cartList.concat(addItems)
           });
         }
       );
@@ -92,6 +95,15 @@ export default class App extends React.Component {
           cart: []
         });
         this.setView('checkout', {});
+      });
+  }
+
+  deleteCartItem(cartItemId) {
+    fetch(`/api/cart/${cartItemId}`, {
+      method: 'DELETE'
+    })
+      .then(data => {
+        this.getCartItems();
       });
   }
 
@@ -127,14 +139,14 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CartSummary cart={this.state.cart} view={this.setView}/>
+          <CartSummary cart={this.state.cart} view={this.setView} delete={this.deleteCartItem}/>
         </div>
       );
     } else if (viewType === 'checkout') {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
-          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} />
+          <CheckoutForm placeOrder={this.placeOrder} cart={this.state.cart.length} view={this.setView} />
         </div>
       );
     } else if (viewType === 'locations') {
@@ -146,5 +158,4 @@ export default class App extends React.Component {
       );
     }
   }
-
 }
