@@ -2,8 +2,6 @@ import React from 'react';
 
 export default function CartSummaryItem(props) {
 
-  debugger;
-
   const price = props.item.price;
 
   return (

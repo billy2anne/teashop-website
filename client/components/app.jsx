@@ -64,12 +64,14 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(tea)
     })
+      .then(res => res.json())
       .then(
-        teaItem => {
+        data => {
           const cartList = this.state.cart;
-          cartList.push(teaItem);
+          const addItems = [];
+          addItems.push(data.[0]);
           this.setState({
-            cart: cartList
+            cart: cartList.concat(addItems)
           });
         }
       );
@@ -156,5 +158,4 @@ export default class App extends React.Component {
       );
     }
   }
-
 }
