@@ -181,6 +181,7 @@ app.post('/api/orders', (req, res, next) => {
 });
 
 app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  debugger;
   const cartItemId = req.params.cartItemId;
   const sql = `
     delete from "cartItems"
