@@ -49,7 +49,7 @@ export default class CheckoutForm extends React.Component {
               <div className="hover text-muted mb-4 pt-0 px-0 btn d-flex justify-content-start" onClick={this.setViewMenu}>&lt; Back to catalog</div>
             </div>
             <div>
-              <button type="button" className="btn btn-primary" id="order" onClick={this.handleSubmit}>Place Order</button>
+              <button type="button" className="btn btn-danger" id="order" onClick={this.handleSubmit}>Place Order</button>
             </div>
           </form>
         </div>

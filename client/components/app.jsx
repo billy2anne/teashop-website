@@ -157,7 +157,7 @@ export default class App extends React.Component {
           <Locations/>
         </div>
       );
-    } else if (viewType === 'career') {
+    } else if (viewType === 'jobDetails') {
       return (
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />

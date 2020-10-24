@@ -193,6 +193,7 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
       } else {
         return res.status(204).json({ alert: 'Item was successfully deleted' });
       }
+      // add error handling
     }
     );
 });
