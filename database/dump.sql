@@ -20,10 +20,12 @@ ALTER TABLE IF EXISTS ONLY public.products DROP CONSTRAINT IF EXISTS products_pk
 ALTER TABLE IF EXISTS ONLY public.orders DROP CONSTRAINT IF EXISTS orders_pkey;
 ALTER TABLE IF EXISTS ONLY public.carts DROP CONSTRAINT IF EXISTS carts_pkey;
 ALTER TABLE IF EXISTS ONLY public."cartItems" DROP CONSTRAINT IF EXISTS "cartItems_pkey";
+ALTER TABLE IF EXISTS ONLY public.career DROP CONSTRAINT IF EXISTS career_pkey;
 ALTER TABLE IF EXISTS public.products ALTER COLUMN "teaId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.orders ALTER COLUMN "orderId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.carts ALTER COLUMN "cartId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public."cartItems" ALTER COLUMN "cartItemId" DROP DEFAULT;
+ALTER TABLE IF EXISTS public.career ALTER COLUMN "careerId" DROP DEFAULT;
 DROP SEQUENCE IF EXISTS public."products_teaId_seq";
 DROP TABLE IF EXISTS public.products;
 DROP SEQUENCE IF EXISTS public."orders_orderId_seq";
@@ -32,6 +34,8 @@ DROP SEQUENCE IF EXISTS public."carts_cartId_seq";
 DROP TABLE IF EXISTS public.carts;
 DROP SEQUENCE IF EXISTS public."cartItems_cartItemId_seq";
 DROP TABLE IF EXISTS public."cartItems";
+DROP SEQUENCE IF EXISTS public."career_careerId_seq";
+DROP TABLE IF EXISTS public.career;
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
@@ -65,6 +69,39 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: career; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.career (
+    "careerId" integer NOT NULL,
+    "position" text NOT NULL,
+    "positionDescription" text NOT NULL,
+    "jobType" text NOT NULL,
+    "createdAt" timestamp(6) with time zone DEFAULT now() NOT NULL
+);
+
+
+--
+-- Name: career_careerId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."career_careerId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: career_careerId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."career_careerId_seq" OWNED BY public.career."careerId";
+
 
 --
 -- Name: cartItems; Type: TABLE; Schema: public; Owner: -
@@ -196,6 +233,13 @@ ALTER SEQUENCE public."products_teaId_seq" OWNED BY public.products."teaId";
 
 
 --
+-- Name: career careerId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.career ALTER COLUMN "careerId" SET DEFAULT nextval('public."career_careerId_seq"'::regclass);
+
+
+--
 -- Name: cartItems cartItemId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -221,6 +265,20 @@ ALTER TABLE ONLY public.orders ALTER COLUMN "orderId" SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN "teaId" SET DEFAULT nextval('public."products_teaId_seq"'::regclass);
+
+
+--
+-- Data for Name: career; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.career ("careerId", "position", "positionDescription", "jobType", "createdAt") FROM stdin;
+1	dishwaher	Ensures the cleanliness and sanitization of dishes, tableware, glassware, pots, pans, and utensils through manual and machine cleaning methods. Additionally, dishwashers are expected to keep the dishwarshing area clean and safe.	part time	2020-10-22 03:06:30.617799+00
+2	Kitchen Staff	 Clean all dishes, work stations, cooking equipment, and food storage areas in accordance with food safety regulations. Wash, chop, shred, and grate ingredients for subsequent use by the Chef. Store ingredients according to prescribed food safety regulations.	Full-time	2020-10-22 03:13:15.502464+00
+3	Accounts Payable	Provide financial, administrative and clerical support to the organisation. This role is aims to complete payments and control expenses by receiving payments, plus processing, verifying and reconciling invoices	Full-time	2020-10-22 03:16:08.373513+00
+4	Team Member	Motivates and inspires employees; being passionate about providing service to guests and ensuring each experience is of the highest quality; demonstrating a strong awareness and concern for food quality/safety and restaurant cleanliness; enjoy working in a fast-paced, high energy, and team-oriented environment; having to willingly comply with the company grooming and appearance standards; and performing basic administrative duties.	Part-time	2020-10-22 03:28:35.67459+00
+5	Cashier	Provides a positive customer experience with fair, friendly, and courteous service. Registers sales on a cash register by scanning items, itemizing and totaling customers purchases. Resolves customer issues and answers questions. Bags purchases if needed. Processes return transactions.	Part-time	2020-10-22 03:34:31.314482+00
+6	Team Leader	The ideal restaurant team leader will be: a self-motivated individual; an excellent communicator; experienced in large restaurant in buffet and a la carte style service; able to lead a team of colleagues; well organised; willing and able to work a rotating roster and be available to work both morning & nights.	Full-time	2020-10-22 03:48:23.249441+00
+\.
 
 
 --
@@ -274,6 +332,100 @@ COPY public."cartItems" ("cartItemId", "cartId", "teaId", price) FROM stdin;
 44	9	5	250
 45	9	1	250
 46	9	2	350
+47	9	2	350
+48	9	2	350
+49	9	3	270
+50	10	2	350
+51	9	1	250
+52	11	2	350
+53	11	2	350
+54	12	1	250
+55	12	2	350
+56	12	4	250
+57	12	2	350
+58	12	1	250
+59	12	5	250
+60	12	3	270
+61	12	1	250
+62	12	3	270
+63	12	1	250
+64	12	1	250
+65	12	1	250
+66	12	1	250
+67	12	7	275
+68	12	3	270
+69	12	2	350
+70	12	2	350
+71	12	2	350
+72	12	2	350
+73	12	2	350
+74	12	1	250
+75	12	3	270
+76	12	1	250
+77	12	1	250
+78	12	1	250
+79	12	1	250
+80	12	3	270
+81	12	1	250
+82	12	3	270
+83	12	1	250
+94	14	1	250
+95	14	2	350
+96	14	1	250
+97	14	3	270
+98	14	3	270
+99	14	2	350
+100	14	3	270
+101	14	1	250
+102	14	2	350
+103	14	1	250
+104	14	3	270
+105	14	2	350
+106	14	1	250
+107	15	1	250
+108	15	3	270
+109	15	3	270
+110	15	1	250
+111	15	1	250
+113	17	1	250
+136	16	1	250
+137	16	1	250
+138	16	2	350
+139	16	3	270
+140	16	3	270
+141	16	1	250
+142	16	3	270
+143	16	2	350
+144	16	2	350
+145	16	2	350
+146	16	2	350
+147	16	2	350
+148	16	2	350
+149	16	2	350
+150	16	2	350
+151	16	1	250
+152	16	3	270
+153	16	2	350
+154	16	2	350
+155	16	2	350
+156	16	1	250
+157	18	2	350
+158	19	2	350
+159	19	2	350
+160	19	1	250
+161	19	3	270
+162	19	2	350
+163	19	2	350
+164	19	3	270
+165	19	2	350
+166	19	3	270
+167	19	1	250
+168	19	2	350
+169	19	1	250
+170	19	1	250
+171	19	2	350
+172	19	1	250
+173	19	1	250
 \.
 
 
@@ -291,6 +443,17 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 7	2020-10-15 05:37:15.030264+00
 8	2020-10-16 01:54:11.932308+00
 9	2020-10-17 03:42:49.938108+00
+10	2020-10-17 06:32:08.119525+00
+11	2020-10-17 21:46:31.820776+00
+12	2020-10-18 20:03:49.956081+00
+13	2020-10-19 05:51:21.011536+00
+14	2020-10-19 06:40:42.026008+00
+15	2020-10-20 05:41:34.50694+00
+16	2020-10-21 02:51:34.938778+00
+17	2020-10-21 03:33:23.239226+00
+18	2020-10-21 23:53:39.674459+00
+19	2020-10-21 23:54:54.646032+00
+20	2020-10-22 00:30:39.421335+00
 \.
 
 
@@ -299,6 +462,13 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 --
 
 COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "createdAt") FROM stdin;
+1	10	Kim	1234	121324 Arizona Blvd	2020-10-17 09:21:43.577613+00
+2	12	Anne	12233243	12345 Oregon Trail Rd	2020-10-19 05:49:19.450475+00
+3	13	Chan	9886544533	45678 Center Dr.	2020-10-19 06:35:13.686776+00
+4	14	Bob	625662111	Yellow Brick Road	2020-10-19 08:27:26.330056+00
+5	16	Anne	67890	1234 Sesame St.	2020-10-21 23:52:48.188213+00
+6	18	Anne	1234	Sesame St.	2020-10-21 23:54:27.055063+00
+7	19	Jonah	098877	123 Pike Place Rd	2020-10-22 00:30:31.841268+00
 \.
 
 
@@ -320,24 +490,31 @@ COPY public.products ("teaId", name, price, image, description) FROM stdin;
 
 
 --
+-- Name: career_careerId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."career_careerId_seq"', 6, true);
+
+
+--
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 46, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 228, true);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 9, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 20, true);
 
 
 --
 -- Name: orders_orderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
+SELECT pg_catalog.setval('public."orders_orderId_seq"', 7, true);
 
 
 --
@@ -345,6 +522,14 @@ SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
 --
 
 SELECT pg_catalog.setval('public."products_teaId_seq"', 1, false);
+
+
+--
+-- Name: career career_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.career
+    ADD CONSTRAINT career_pkey PRIMARY KEY ("careerId");
 
 
 --

@@ -6,6 +6,7 @@ import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import AboutUs from './about-us';
 import Locations from './locations';
+import CareerList from './career-list';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -154,6 +155,13 @@ export default class App extends React.Component {
         <div>
           <Header cartItemCount={this.state.cart.length} view={this.setView} />
           <Locations/>
+        </div>
+      );
+    } else if (viewType === 'career') {
+      return (
+        <div>
+          <Header cartItemCount={this.state.cart.length} view={this.setView} />
+          <CareerList />
         </div>
       );
     }

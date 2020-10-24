@@ -181,7 +181,6 @@ app.post('/api/orders', (req, res, next) => {
 });
 
 app.delete('/api/cart/:cartItemId', (req, res, next) => {
-  debugger;
   const cartItemId = req.params.cartItemId;
   const sql = `
     delete from "cartItems"
@@ -196,6 +195,19 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
       }
     }
     );
+});
+
+app.get('/api/career', (req, res, next) => {
+  const jobs = `
+    select "careerId",
+           "position",
+           "positionDescription",
+           "jobType"
+    from "career"
+  `;
+  db.query(jobs)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
